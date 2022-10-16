@@ -105,11 +105,11 @@ public class Main {
          * która to właśnie będzie odpowiadać za wykonywanie zadań,
          * o konkretnych porach.
          *
-         * Ta klasa będzie mixem 2 wzorców projektyowych:
-         * - singletonu - chcemy, aby był tylko jeden harmonogram,
+         * Ta klasa będzie mixem 2 wzorców projektowych:
+         * 1. singletonu - chcemy, aby był tylko jeden harmonogram,
          *   w którym będą przechowywane informacje o wszystkich zadaniach jakie mają być wykonane (Implementacje IRunNotSafeAction),
          *   oraz o metodzie lambda która zwraca kolejne czasy wykonania danego zadania (implementacja IProvideNextExecutionTime)
-         * 1. budowniczego:
+         * 2. budowniczego:
          *      -> forAction: metoda do definiowania zadania do wykonania
          *      -> onError: metoda która przyjmuje lambdę, która to z kolei jako parametr ma przyjąć wyjątek, i jakoś go obsłużyć
          *      -> onSingleActionCompleted: przyjmuje lambdę, która definiuje co ma się stać po wykonaniu pojednyczego zadania
