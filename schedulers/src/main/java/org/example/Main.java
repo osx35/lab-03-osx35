@@ -77,10 +77,9 @@ public class Main {
 //
 //        try {
 //            throwAnError.executeNotSafeAction();
-//            if(true) {
-//                System.out.println("tutaj powinien wystąpić błąd, a nie wystąpił :(");
-//                return;
-//            }}catch (Exception ex){}
+//            System.out.println("tutaj powinien wystąpić błąd, a nie wystąpił :(");
+//            return;
+//            }catch (Exception ex){}
 
         /**
          * wykorzystajmy metodę,
