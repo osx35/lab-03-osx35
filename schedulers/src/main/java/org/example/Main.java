@@ -58,6 +58,8 @@ public class Main {
          *
          * Metoda buildNextTimeExecutionProvider ma zwracać lambdę,
          * która generuje kolejną godzinę według wcześniej podanych parametrów
+         * UAWAGA !
+         * Najlepiej zrobić tak, aby klasa Chron implementowała "buildera" (budowniczego) - w sensie nie robić buildera jako odrębnej klasy
          */
 //        IProvideNextExecutionTime startsNowFor5SecondsMax5TimesWithDurationOf500Millis = Chron.builder()
 //                .setStartTime(LocalDateTime.now())
