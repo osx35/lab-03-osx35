@@ -1,5 +1,10 @@
 package org.example;
 
+import org.example.scheduler.abstractions.IProvideNextExecutionTime;
+import org.example.scheduler.abstractions.IRunNotSafeAction;
+
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Random;
 
 public class Main {
@@ -26,7 +31,7 @@ public class Main {
          * do określania, kiedy mają być wywoływane
          * konkretne operacje
          */
-//        IProvideNextExecutionTime nextExecutionTimeProvider;
+        IProvideNextExecutionTime nextExecutionTimeProvider;
 
         /**
          * dodaj adnotację @FunctionalInterface
@@ -37,8 +42,8 @@ public class Main {
          * poniżej masz dwie przykładowe implementacje
          * tego interfejsu w postaci wyrażeń (metod) lambda
          */
-//        nextExecutionTimeProvider = LocalDateTime::now;
-//        nextExecutionTimeProvider = () -> LocalDateTime.now();
+        nextExecutionTimeProvider = LocalDateTime::now;
+        nextExecutionTimeProvider = () -> LocalDateTime.now();
 
         /**
          * Twoim pierwszym zadaniem jest napisanie
@@ -61,12 +66,12 @@ public class Main {
          * UAWAGA !
          * Najlepiej zrobić tak, aby klasa Chron implementowała "buildera" (budowniczego) - w sensie nie robić buildera jako odrębnej klasy
          */
-//        IProvideNextExecutionTime startsNowFor5SecondsMax5TimesWithDurationOf500Millis = Chron.builder()
-//                .setStartTime(LocalDateTime.now())
-//                .setEndDate(LocalDateTime.now().plusSeconds(5))
-//                .setMaxExecutionTimes(5)
-//                .setIntervalDuration(Duration.ofMillis(500))
-//                .buildNextTimeExecutionProvider();
+        IProvideNextExecutionTime startsNowFor5SecondsMax5TimesWithDurationOf500Millis = Chron.builder()
+                .setStartTime(LocalDateTime.now())
+                .setEndDate(LocalDateTime.now().plusSeconds(5))
+                .setMaxExecutionTimes(5)
+                .setIntervalDuration(Duration.ofMillis(500))
+                .buildNextTimeExecutionProvider();
 
 
         /**
@@ -75,20 +80,25 @@ public class Main {
          * kolejnego interfejsu, który będzie wykorzystywany
          * jako lambda, która może rzucić wyjątkiem (błędem)
          */
-//        IRunNotSafeAction throwAnError = ()->{ throw new Exception(); };
-//
-//        try {
-//            throwAnError.executeNotSafeAction();
-//            System.out.println("tutaj powinien wystąpić błąd, a nie wystąpił :(");
-//            return;
-//            }catch (Exception ex){}
+        IRunNotSafeAction throwAnError = ()->{ throw new Exception(); };
+
+        try {
+            throwAnError.executeNotSafeAction();
+            System.out.println("tutaj powinien wystąpić błąd, a nie wystąpił :(");
+            return;
+            }catch (Exception ex){}
 
         /**
          * wykorzystajmy metodę,
          * która co jakiś czas rzuca błedem
          * jako implementacja powyższego interfejsu
          */
-//        IRunNotSafeAction randomlyThrowsAnError = () -> randomlyThrowException();
+        IRunNotSafeAction randomlyThrowsAnError = () -> randomlyThrowException();
+        try {
+            randomlyThrowsAnError.executeNotSafeAction();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         /* albo inaczej: */
 //        IRunNotSafeAction randomlyThrowsAnErrorMethodReference = Main::randomlyThrowException;
 
