@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.scheduler.Scheduler;
+import org.example.scheduler.SchedulerThread;
 import org.example.scheduler.abstractions.IProvideNextExecutionTime;
 import org.example.scheduler.abstractions.IRunNotSafeAction;
 
@@ -131,14 +133,14 @@ public class Main {
          *  W tym zadaniu pewnie będziesz musiał napisac kilka własnych klas/ inetrfejsów pomocniczych,
          *  których nie spotkasz w tym miejscu (tzn. w ciele funkcji main, w której aktualnie się znajdujemy)
          */
-//        Scheduler scheduler = Scheduler.getInstance();
-//         scheduler
-//                .forAction(randomlyThrowsAnError)
-//                .useExecutionTimeProvider(startsNowFor5SecondsMax5TimesWithDurationOf500Millis)
-//                .onError(ex->handleException(ex))
-//                .onSingleActionCompleted(()->System.out.println("wykonano akcje z powodzeniem"))
-//                .onCompleted(()->System.out.println("Zakończyłem pracę"))
-//                .Schedule();
+        Scheduler scheduler = Scheduler.getInstance();
+         scheduler
+                .forAction(randomlyThrowsAnError)
+                .useExecutionTimeProvider(startsNowFor5SecondsMax5TimesWithDurationOf500Millis)
+                .onError(ex->handleException(ex))
+                .onSingleActionCompleted(()->System.out.println("wykonano akcje z powodzeniem"))
+                .onCompleted(()->System.out.println("Zakończyłem pracę"))
+                .schedule();
 
         /**
          * Jeżeli już tutaj się znalazłeś i samemu rozwiązałeeś powyższe zadania,
@@ -156,9 +158,9 @@ public class Main {
          *      a zadanie się jeszcze nie wykonało,
          *      to je wykonuje.
          */
-//        Runnable schedulerThread = new SchedulerThread();
-//
-//        new Thread(schedulerThread).start();
+        Runnable schedulerThread = new SchedulerThread();
+
+        new Thread(schedulerThread).start();
 
         /**
          * na zakończenie sprawdźmy co się stanie,
